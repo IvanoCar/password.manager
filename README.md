@@ -12,9 +12,9 @@ Desktop password management tool made with Python and Flask micro-framework. *So
  - Password removed from clipboard after 15 seconds
  - Password generator for generating new passwords
 
-![login](images\login.png)
+![login](images/login.png)
 
-![dahsboard](images\dashboard.png)
+![dashboard](images/dashboard.png)
 
 ## TODO
 
