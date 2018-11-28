@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Password Manager</title>
+
+    <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet" type="text/css">
+
+</head>
+
+<body>
+<div class="container" style="padding-top: 9%;">
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+
+            <div id="login-container">
+                <form class="form-horizontal" method="POST" action="{{ link }}">
+                    <fieldset>
+
+                        <!-- Form Name -->
+                        <legend align="center">{{ submitText }}</legend>
+
+                        <!-- Text input-->
+                        <div class="form-group">
+                            <label class="col-md-5 control-label" for="input-ime">Korisničko ime</label>
+                            <div class="col-md-7">
+                                <input id="input-ime" name="usr" type="text" placeholder="Unesi korisničko ime"
+                                       class="form-control input-md" required>
+
+                            </div>
+                        </div>
+
+                        <!-- Password input-->
+                        <div class="form-group">
+                            <label class="col-md-5 control-label" for="passwordinput">Lozinka</label>
+                            <div class="col-md-7">
+                                <input id="passwordinput" name="pwd" type="password"
+                                       placeholder="Unesi lozinku"
+                                       class="form-control input-md" required>
+
+                            </div>
+                        </div>
+
+                        <!-- Button -->
+                        <div class="form-group" align="center">
+                            <div class="col-md-12">
+                                <button id="potvrda" class="btn btn-primary">{{ submitText }}</button>
+                            </div>
+                        </div>
+
+                    </fieldset>
+                </form>
+            </div>
+
+            <div class="col-md-4">
+
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+
+            </div>
+            <div class="col-md-4">
+                <div id="loginMsg">
+                    {% if error %}
+                    <h5>Krivo korisničko ime ili lozinka!</h5>
+                    {% endif %}
+
+                    {% if logout %}
+                    <h5>Odjava uspješna.</h5>
+                    {% endif %}
+
+                    {% if notlgin %}
+                    <h5>Niste prijavljeni!</h5>
+                    {% endif %}
+
+                    {% if errorBP %}
+                    <h5>Baza podataka je neispravna!</h5>
+                    {% endif %}
+
+                </div>
+            </div>
+
+            <div class="col-md-4">
+
+            </div>
+
+        </div>
+    </div>
+
+</body>
+
+</html>

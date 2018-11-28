@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Dashboard - Password Manager</title>
+
+    <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet" type="text/css">
+
+</head>
+
+<body>
+<div id="dashboard">
+    <div class="menu">
+        <div class="logo"></div>
+
+        <ul class="nav flex-column">
+
+            <li class="nav-item">
+                <a class="nav-link" href="/dashboard">Moje lozinke</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/generator">Generator lozinki</a>
+            </li>
+
+        </ul>
+
+        <div class="menu-footer">
+            <!-------             <h5> USER </h5>----------->
+            <a href="/logout" class="btn btn-primary">Odjava</a>
+        </div>
+
+
+    </div>
+
+    <div class="data">
+        <h3>Moje lozinke</h3>
+        <a href="/dashboard/add"><button type="button" class="btn btn-primary">Dodaj novi</button></a>
+
+        {% if msgNeeded %}
+            <div class="alert alert-success" style="margin-top: 12px;">
+                {{ msg }}
+            </div>
+        {% endif %}
+
+        <table class="table" id="dash-table">
+            <thead class="thead-dark">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Usluga</th>
+                <th scope="col">Korisničko ime</th>
+                <!--<th scope="col">Lozinka</th>-->
+                <!--<th scope="col">Grupa</th>-->
+            </tr>
+            </thead>
+            <tbody>
+
+                {% if services|length == 0 %}
+                    <tr>
+                        <td align="center" colspan="4">Nema lozinki</td>
+                    </tr>
+                {% else %}
+                    {% for service in services %}
+
+                        <tr>
+                            <th scope="row">{{ loop.index }}</th>
+                            <td>{{ service['name'] }}</td>
+                            <td>{{ service['username'] }}</td>
+                            <!--<td>{{ service['password'] }}</td>-->
+                            <!--<td>{{ service['group'] }}</td>-->
+                            <td><a href="/dashboard/copy/{{ service['id'] }}" class="btn btn-success">Kopiraj</a></td>
+                            <td><a href="/dashboard/edit/{{ service['id'] }}" class="btn btn-warning">Uredi</a></td>
+                            <td><a href="/dashboard/delete/{{ service['id'] }}" class="btn btn-danger">Obriši</a></td>
+                        </tr>
+
+                    {% endfor %}
+                {% endif %}
+
+            </tbody>
+        </table>
+
+
+    </div>
+</div>
+
+</body>
+
+</html>

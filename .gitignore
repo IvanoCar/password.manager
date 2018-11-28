@@ -1,0 +1,4 @@
+pyinstaller
+git.txt
+manager/modules/utils/encription.py
+manager/static/css/bootstrap.min.css
